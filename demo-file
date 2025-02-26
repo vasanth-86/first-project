@@ -1,8 +1,11 @@
-a = 5
-b = 10
+// Define variables
+def a = 5
+def b = 10
 
-if a > b:
-    print(a)
-else:
-    print(b)
+// Compare values and print the result
+if (a > b) {
+    println(a)
+} else {
+    println(b)
+}
 
