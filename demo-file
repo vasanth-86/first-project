@@ -1,11 +1,41 @@
-// Define variables
-def a = 5
-def b = 10
+pipeline {
+    agent any
 
-// Compare values and print the result
-if (a > b) {
-    println(a)
-} else {
-    println(b)
+    stages {
+        stage('Define Variables') {
+            steps {
+                script {
+                    // Define variables
+                    def a = 5
+                    def b = 10
+                    // Store them for use in next steps
+                    env.A = a
+                    env.B = b
+                }
+            }
+        }
+
+        stage('Compare Values') {
+            steps {
+                script {
+                    // Compare the values of a and b and determine the greater one
+                    if (env.A.toInteger() > env.B.toInteger()) {
+                        env.RESULT = env.A
+                    } else {
+                        env.RESULT = env.B
+                    }
+                }
+            }
+        }
+
+        stage('Print Result') {
+            steps {
+                script {
+                    // Print the result
+                    echo "The greater value is: ${env.RESULT}"
+                }
+            }
+        }
+    }
 }
 
